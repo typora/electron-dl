@@ -4,7 +4,6 @@ const electron = require('electron');
 const unusedFilename = require('unused-filename');
 const pupa = require('pupa');
 const extName = require('ext-name');
-const _ = require('lodash');
 
 const {app, shell} = electron;
 
@@ -35,7 +34,7 @@ const progressDownloadItems = function (item) {
 function registerListener(session) {
 	const listener = (e, item, webContents) => {
 		const urlChains = item.getURLChain();
-		const originUrl = _.first(urlChains);
+		const originUrl = urlChains[0];
 		const key = decodeURIComponent(originUrl);
 		const defaultHanlder = {
 			options: {},
