@@ -76,10 +76,6 @@ function registerListener(session) {
 				return receivedBytes;
 			}, completedBytes);
 
-			if (['darwin', 'linux'].includes(process.platform)) {
-				app.setBadgeCount(activeDownloadItems());
-			}
-
 			if (!win.isDestroyed()) {
 				win.setProgressBar(progressDownloadItems());
 			}
@@ -92,10 +88,6 @@ function registerListener(session) {
 		item.once('done', (e, state) => {
 			completedBytes += item.getTotalBytes();
 			downloadItems.delete(item);
-
-			if (['darwin', 'linux'].includes(process.platform)) {
-				app.setBadgeCount(activeDownloadItems());
-			}
 
 			if (!win.isDestroyed() && !activeDownloadItems()) {
 				win.setProgressBar(-1);
