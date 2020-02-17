@@ -69,6 +69,10 @@ function registerListener(session) {
 		if (!options.saveAs) {
 			item.setSavePath(filePath);
 		}
+		
+		if (typeof options.onStarted === 'function') {
+			options.onStarted(item);
+		}
 
 		item.on('updated', () => {
 			receivedBytes = [...downloadItems].reduce((receivedBytes, item) => {
