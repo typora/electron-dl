@@ -81,7 +81,14 @@ function registerListener(session) {
 			}
 
 			if (typeof options.onProgress === 'function') {
-				options.onProgress(progressDownloadItems(item));
+				const itemTransferredBytes = item.getReceivedBytes();
+				const itemTotalBytes = item.getTotalBytes();
+
+				options.onProgress({
+					percent: itemTotalBytes ? itemTransferredBytes / itemTotalBytes : 0,
+					transferredBytes: itemTransferredBytes,
+					totalBytes: itemTotalBytes
+				});
 			}
 		});
 
