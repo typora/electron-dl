@@ -47,6 +47,7 @@ function registerListener(session) {
 		totalBytes += item.getTotalBytes();
 
 		let hostWebContents = webContents;
+		if(!webContents) return;
 		if (webContents.getType() === 'webview') {
 			({hostWebContents} = webContents);
 		}
